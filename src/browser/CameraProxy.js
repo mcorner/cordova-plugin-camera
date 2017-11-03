@@ -109,8 +109,17 @@ function capture (success, errorCallback, opts) {
         document.body.appendChild(parent);
     };
 
+    const videoConstraints = {
+      "mandatory": {
+        "minWidth": targetWidth,
+        "minHeight": targetHeight,
+        "minFrameRate": "30"
+      },
+      "optional": []
+    }
+
     if (navigator.getUserMedia) {
-        navigator.getUserMedia({video: true}, successCallback, errorCallback);
+        navigator.getUserMedia({video: videoConstraints}, successCallback, errorCallback);
     } else {
         alert('Browser does not support camera :(');
     }
